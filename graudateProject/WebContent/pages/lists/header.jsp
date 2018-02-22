@@ -20,10 +20,10 @@
              <nav>
              	
                 <ul class="menu hidden-xs">
-                  <li><a href="index.html">主页</a></li>
-				  <li><a href="shop.html">登陆</a></li>
-				  <li><a href="shop-detail.html">注册</a><li>
-				  <li><a href="wish-list.html">购物车</a></li>
+                  <li><a href="pages/main.jsp">主页</a></li>
+				  <li><a href="pages/loginAndRegister/login.jsp">登陆</a></li>
+				  <li><a href="pages/loginAndRegister/register.jsp">注册</a><li>
+				  <li><a href="pages/shoppingCar/shopCar.jsp">购物车</a></li>
 				  <li><a href="shop-cart.html">我的足迹</a></li>
                 </ul>
               </nav>
