@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+<display-name>atcrowdfunding</display-name>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath*:spring/spring-*.xml</param-value>
+	</context-param>
+
+	<!-- 监听器 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+    <!-- 监听器 -->
+	<listener>
+		<listener-class>com.neusoft.fruitproject.listener.StartUpSystemListener</listener-class>
+	</listener>
+	<!-- 字符编码过滤器 -->
+	<filter>
+		<filter-name>encoding</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encoding</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
+	<filter>
+		<filter-name>HiddenHttpMethodFilter</filter-name>
+		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>HiddenHttpMethodFilter</filter-name>
+		<servlet-name>springmvc</servlet-name>
+	</filter-mapping>
+
+
+
+	<servlet>
+		<servlet-name>springmvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:spring/springmvc-context.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>springmvc</servlet-name>
+		<url-pattern>*.htm</url-pattern>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+
+	<!-- 会话超时时间 -->
+	<session-config>
+		<session-timeout>60</session-timeout>
+	</session-config>
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+    <!-- 配置验证码 -->
+	 <servlet>
+    <servlet-name>KaptchaServlet</servlet-name>
+    <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
+    <init-param>
+      <description>设置边框线的颜色</description>
+      <param-name>kaptcha.border.color</param-name>
+      <param-value>green</param-value>
+    </init-param>
+    <init-param>
+      <description>设置边框线的厚度</description>
+      <param-name>kaptcha.border.thickness</param-name>
+      <param-value>1</param-value>
+    </init-param>
+    <init-param>
+      <description>设置验证码的长度</description>
+      <param-name>kaptcha.textproducer.char.length</param-name>
+      <param-value>4</param-value>
+    </init-param>
+    <init-param>
+      <description>设置验证码字符的颜色</description>
+      <param-name>kaptcha.textproducer.font.color</param-name>
+      <param-value>red</param-value>
+    </init-param>
+    <init-param>
+      <description>设置验证码字符间距</description>
+      <param-name>kaptcha.textproducer.char.space</param-name>
+      <param-value>8</param-value>
+    </init-param>
+    <init-param>
+      <description>设置验证码字体</description>
+      <param-name>kaptcha.textproducer.font.names</param-name>
+      <param-value>黑体</param-value>
+    </init-param>
+    <init-param>
+      <description>设置验证码保存在session中的key</description>
+      <param-name>kaptcha.session.key</param-name>
+      <param-value>code</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>KaptchaServlet</servlet-name>
+    <url-pattern>/code.jpg</url-pattern>
+  </servlet-mapping>
+
+
+
+</web-app>
